@@ -14,7 +14,7 @@ DROP Table rangers;
 CREATE Table species (
     species_id SERIAL PRIMARY KEY NOT NULL,
     common_name VARCHAR(50) NOT NULL,
-    scientific_name VARCHAR(50) NOT NULL,
+    scientific_name VARCHAR(50) NOT NULL UNIQUE,
     discovery_date DATE NOT NULL,
     conservation_status VARCHAR(30) NOT NULL
 )
@@ -52,6 +52,11 @@ INSERT INTO sightings(sighting_id, species_id, ranger_id, "location", sighting_t
 (4, 1, 2, 'Snowfall Pass', '2024-05-18 18:30:00', NULL);
 
 
+DROP Table rangers;
+
+DROP Table species;
+
+DROP table sightings;
 
 
 SELECT * FROM rangers;
@@ -59,3 +64,7 @@ SELECT * FROM rangers;
 SELECT * FROM species;
 
 SELECT * FROM sightings;
+
+-- problem 1
+INSERT INTO rangers("name", region)
+    VALUES ('Derek Fox', 'Coastal Plains');
