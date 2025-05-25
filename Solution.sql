@@ -24,7 +24,7 @@ CREATE Table sightings (
     species_id INT REFERENCES species(species_id) NOT NULL,
     ranger_id INT REFERENCES rangers(ranger_id) NOT NULL,
     "location" VARCHAR(50) NOT NULL,
-    sighting_time DATE NOT NULL,
+    sighting_time TIMESTAMP NOT NULL,
     notes TEXT
 )
 
@@ -68,3 +68,12 @@ SELECT * FROM sightings;
 -- problem 1
 INSERT INTO rangers("name", region)
     VALUES ('Derek Fox', 'Coastal Plains');
+
+
+-- problem 2
+SELECT count(DISTINCT species_id) AS unique_species_count FROM sightings;
+
+
+-- problem 3
+SELECT * FROM sightings
+    WHERE "location" LIKE '%Pass%';
