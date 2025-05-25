@@ -77,3 +77,29 @@ SELECT count(DISTINCT species_id) AS unique_species_count FROM sightings;
 -- problem 3
 SELECT * FROM sightings
     WHERE "location" LIKE '%Pass%';
+
+
+
+
+
+
+
+-- INSERT INTO rangers("name", region)
+-- VALUES ('Alice Green', 'Dhaka');
+-- INSERT INTO sightings (sighting_id, species_id, ranger_id, "location", "sighting_time", notes)
+-- VALUES (100, 2, 5, 'Dhaka', '2025-05-18 18:30:00', 'Dhakay Dekhsi Go');
+
+-- problem 4
+SELECT "name", count(*) FROM rangers
+INNER JOIN sightings USING(ranger_id)
+GROUP BY ranger_id; --here if we group by name, it will wrong, because same name person can appear but their ranger_id is different, and the query says to select *each* ranger
+
+
+
+--problem 5
+SELECT common_name FROM species LEFT JOIN sightings
+USING(species_id) WHERE sighting_id IS NULL;
+
+
+
+
