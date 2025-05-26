@@ -144,4 +144,12 @@ SELECT * FROM species;
 
 
 
-
+-- problem 8
+SELECT sighting_id, 
+CASE 
+    WHEN extract(hour FROM sighting_time)
+     BETWEEN 0 AND 11 THEN 'Morning'
+    WHEN extract(hour FROM sighting_time) BETWEEN 12 AND 17 THEN 'Afternoon'
+    WHEN extract(hour FROM sighting_time) BETWEEN 17 AND 24 THEN 'Evening'  
+END AS time_of_day
+FROM sightings;
