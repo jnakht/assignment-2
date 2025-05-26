@@ -102,4 +102,38 @@ USING(species_id) WHERE sighting_id IS NULL;
 
 
 
+--problem 6
+SELECT common_name, sighting_time, "name" FROM species INNER JOIN
+sightings USING(species_id) ORDER BY sighting_time;
+
+CREATE View sightings_ranger
+AS 
+SELECT sighting_id, ranger_id, "name" FROM sightings
+LEFT JOIN rangers USING(ranger_id);
+
+CREATE View sightings_species
+AS
+SELECT sighting_id, species_id, common_name, sighting_time
+FROM sightings LEFT JOIN
+species USING(species_id);
+
+DROP VIEW sightings_ranger;
+DROP VIEW sightings_species;
+SELECT * FROM sightings_ranger;
+SELECT * FROM sightings_species;
+
+
+SELECT common_name, sighting_time, "name"
+FROM sightings_ranger
+INNER JOIN sightings_species
+USING(sighting_id) ORDER BY sighting_time DESC LIMIT 2;
+
+
+--problem 6 end
+
+
+
+
+
+
 
