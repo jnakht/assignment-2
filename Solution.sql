@@ -133,6 +133,14 @@ USING(sighting_id) ORDER BY sighting_time DESC LIMIT 2;
 
 
 
+--problem 7
+UPDATE  species 
+SET conservation_status = 'Historic'
+WHERE extract(year FROM discovery_date) < 1800;
+--problem 7 end
+
+SELECT * FROM species;
+
 
 
 
