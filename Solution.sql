@@ -92,7 +92,7 @@ SELECT * FROM sightings
 -- problem 4
 SELECT "name", count(*) FROM rangers
 INNER JOIN sightings USING(ranger_id)
-GROUP BY ranger_id; --here if we group by name, it will wrong, because same name person can appear but their ranger_id is different, and the query says to select *each* ranger
+GROUP BY ranger_id; --here if we group by name, it will be wrong, because same name person can appear but their ranger_id is different, and the query says to select *each* ranger
 
 
 
@@ -103,9 +103,6 @@ USING(species_id) WHERE sighting_id IS NULL;
 
 
 --problem 6
-SELECT common_name, sighting_time, "name" FROM species INNER JOIN
-sightings USING(species_id) ORDER BY sighting_time;
-
 CREATE View sightings_ranger
 AS 
 SELECT sighting_id, ranger_id, "name" FROM sightings
@@ -116,12 +113,6 @@ AS
 SELECT sighting_id, species_id, common_name, sighting_time
 FROM sightings LEFT JOIN
 species USING(species_id);
-
-DROP VIEW sightings_ranger;
-DROP VIEW sightings_species;
-SELECT * FROM sightings_ranger;
-SELECT * FROM sightings_species;
-
 
 SELECT common_name, sighting_time, "name"
 FROM sightings_ranger
@@ -150,6 +141,22 @@ CASE
     WHEN extract(hour FROM sighting_time)
      BETWEEN 0 AND 11 THEN 'Morning'
     WHEN extract(hour FROM sighting_time) BETWEEN 12 AND 17 THEN 'Afternoon'
-    WHEN extract(hour FROM sighting_time) BETWEEN 17 AND 24 THEN 'Evening'  
+    WHEN extract(hour FROM sighting_time) BETWEEN 18 AND 23 THEN 'Evening'  
 END AS time_of_day
 FROM sightings;
+--problem 8 end
+
+
+--problem 9
+DELETE FROM rangers
+WHERE ranger_id IN (
+    SELECT ranger_id from rangers
+    left JOIN sightings USING(ranger_id)
+    WHERE sighting_id IS NULL
+    GROUP BY ranger_id
+)
+--problem 9 end
+
+SELECT * FROM rangers;
+
+SELECT * FROM sightings;
