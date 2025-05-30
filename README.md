@@ -29,7 +29,8 @@ public.parent
 
 
 # 3. Explain the Primary Key and Foreign Key concepts in PostgreSQL.
-**Primary Key**
+**Primary Key:**
+
 PostgreSQL-এ `Primary Key` হলো এক বা একাধিক কলামের সমষ্টি যা প্রতিটি সারিকে আলাদাভাবে চিহ্নিত করতে পারে। প্রতিটি সারিকে আলাদাভাবে চিহ্নিত করা ডেটা ব্যবস্থাপনার একটি অত্যন্ত গুরুত্বপূর্ণ বিষয়। তাই `Primary Key`-এর দুটি বৈশিষ্ট্য থাকে:
 
 - একটি হলো এই কলামের কোনো মান `NULL` হতে পারবে না, কারণ `NULL` হলে স্বতন্ত্রভাবে (uniquely) চিহ্নিত করা সম্ভব নয়।
